@@ -1,0 +1,68 @@
+
+<%= flash[:notice] %>
+
+<div class="container">
+<div class="row">
+<div class="col-md-3">
+
+<%= render 'side', user: @Book.user, book: @book %>
+
+</div>
+
+<div class="col-md-8 offset-md-1">
+
+
+<br>
+
+<h2>Book detail</h2>
+
+<table class="table table-hover">
+<thead>
+</thead>
+
+<tbody>
+
+
+<tr>
+
+<td>
+<%= link_to user_path(@users.id) do %>
+<%= image_tag @Book.user.get_profile_image(100,100) %>
+<br><%= @Book.user.name %></td>
+<% end %>
+
+
+<td>
+<%= link_to book_path(@Book.id) do %>
+<%= @Book.title %>
+<% end %>
+</td>
+
+<td><%= @Book.body %></td>
+
+
+<td>
+<% if @Book.user == current_user %>
+<%= link_to "Edit", edit_book_path(@Book.id), class:'btn btn-success btn-sm btn-block mb-3 edit' %>
+<% end %>
+</td>
+
+<td>
+<% if @Book.user == current_user %>
+<%= link_to "Destroy", book_path(@Book.id), method: :delete, "data-confirm" => "本当に削除しますか？" ,class:'btn btn-danger btn-sm btn-block mb-3 edit' %>
+<% end %>
+</td>
+
+</tr>
+
+
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+</div>
+</div>
